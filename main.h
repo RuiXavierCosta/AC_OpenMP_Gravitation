@@ -10,4 +10,4 @@
 	#define omp_get_thread_num() 0
 #endif
 
-#define G 0      // G = 6.67408 * 10^-11
+#define G 6.67408      // G = 6.67408 * 10^-11

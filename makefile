@@ -1,6 +1,10 @@
 CC=gcc -fopenmp -g
 CFLAGS=-I.
-BUILD_DIR = build
+
+TEST_DATA = "10 2\n0 0 0 10\n5 0 0 20\n0 5 5 10\n10 5 0 20"
+BUILD_DIR= build
+FILE_FUNCS= helpers/file_functions.c 
+
 
 .PHONY: all
 all: main
@@ -8,7 +12,7 @@ all: main
 .PHONY: main
 main: main.c
 	test -d "$(BUILD_DIR)" || mkdir $(BUILD_DIR)
-	$(CC) main.c -o $(BUILD_DIR)/main
+	$(CC) $(FILE_FUNCS) main.c -o $(BUILD_DIR)/main
 
 setup:
 	make -C ./exemplos/
@@ -16,3 +20,6 @@ setup:
 
 clean:
 	rm -r build
+
+generate_test:
+	echo $(TEST_DATA) > test.txt

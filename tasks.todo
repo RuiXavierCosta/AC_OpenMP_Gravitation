@@ -1,3 +1,54 @@
 Ex 15
 Simulação de Gravitação com OpenMP:
+    Entrega de relatório:
+
+
+    Entrega de trabalho:
+        ☐ Leitura de ficheiro
+        ☐ Calculo de evolução de coordenadas
+        ☐ Escrita para ficheiro
+
+
+    Formato ficheiro entrada:
+        ☐ t_total ∆t
+        ☐ x y z m       // Corpo 1
+        ☐ x y z m       // Corpo 2
+        ☐ x y z m       // Corpo 3
+        ☐ .
+        ☐ .
+        ☐ .
     
+    Formato ficheiro saida:
+        ☐ x y z     // Corpo 1
+        ☐ x y z     // Corpo 2
+        ☐ x y z     // Corpo 3
+        ☐ ...
+        ☐           // Linha em branco
+        ☐ x y z     // Corpo 1
+        ☐ x y z     // Corpo 2
+        ☐ x y z     // Corpo 3
+        ☐ ...
+        ☐           // Linha em branco
+        ☐ x y z     // Corpo 1
+        ☐ x y z     // Corpo 2
+        ☐ x y z     // Corpo 3
+
+    Algoritmos:
+        G = 6.67408 * 10^-11
+
+        f_ij = [ (G*m_i*m_j) / (abs(p_j - p_i)^2) ] * 
+                * [ (p_j - p_i) / (abs(p_j - p_i)) ] 
+        
+        f_i = sum(j=0, j!=i, N)(f_i,j)
+
+        a_x = f_x / m
+        v_x(k) = v_x(k-1) + a_x * ∆t
+        p_x(k) = p_x(k-1) + v_x * ∆t
+
+        a_y = f_y / m
+        v_y(k) = v_y(k-1) + a_y * ∆t
+        p_y(k) = p_y(k-1) + v_y * ∆t
+
+        a_z = f_z / m
+        v_z(k) = v_z(k-1) + a_z * ∆t
+        p_z(k) = p_z(k-1) + v_z * ∆t

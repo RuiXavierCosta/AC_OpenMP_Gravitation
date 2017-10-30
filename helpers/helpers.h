@@ -1,5 +1,7 @@
 #include <math.h>
 
+#define G 667408E-16
+
 /** 
  * Vector:
  *  define um vector no espaco,

@@ -27,9 +27,10 @@ CORPO * generate_mock_bodies(int body_count){
 
 
 int main(int argc, char ** argv){
-    CORPO *random_bodies = generate_mock_bodies(TOTAL_CORPOS);
+    //CORPO *random_bodies = generate_mock_bodies(TOTAL_CORPOS);
+    int total_time = 0, delta_time = 0;
 
-    write_to_file(random_bodies);
+    read_from_file(&total_time, &delta_time);
     return 0;
 }
 

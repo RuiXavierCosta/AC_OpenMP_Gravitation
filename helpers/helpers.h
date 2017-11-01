@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #define G 667408E-16
 
@@ -63,11 +64,12 @@ double *get_angles(double x, double y, double z);
  *  ficheiro para obter a informacao dos corpos, 
  *  apartir de um ficheiro
 **/
-CORPO *read_from_file();
+struct Corpo *read_from_file(int *total_time, int *time_delta);
+
 
 /**
  * write_to_file:
  *  ficheiro para escrever a informacao dos corpos em ficheiro, 
  *  com uma estrutura pre definida
 **/
-int write_to_file(CORPO *conjunto_corpos);
+int write_to_file(CORPO *conjunto_corpos, int body_count);

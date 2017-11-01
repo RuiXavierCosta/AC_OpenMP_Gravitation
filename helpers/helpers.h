@@ -49,60 +49,57 @@ int write_to_file();
  * Parte redigida por D. Rui Barbosa, primeiro de seu nome
 **/
 
-#define Grv = (6.67408*10^(-11));
 /**
  * #define K= qql merda
 **/
 double TEMPO;
 
 
-double Norma(Corpo i, Corpo j){
-double componentes [4];
-componentes[0]=((Corpo.j.p.x - Corpo.i.p.x)²;
-componentes[1]=((Corpo.j.p.y - Corpo.i.p.y)²;
-componentes[2]=((Corpo.j.p.z - Corpo.i.p.z)²;
-componentes[3]=sqrt(componentes[0] + componentes[1] + componentes[2]);
-retun componentes[4];
-/** 
- * Com a norma organizada desta maneira podemos usar o valor 
- * do vetor da maneira que melhor servir as nossas necessidades
-**/
+double *Norma(struct Corpo i, struct Corpo j){
+    double componentes [4];
+    componentes[0]=((j.p.x - i.p.x)^2);
+    componentes[1]=((j.p.y - i.p.y)^2);
+    componentes[2]=((j.p.z - i.p.z)^2);
+    componentes[3]=sqrt(componentes[0] + componentes[1] + componentes[2]);
+    return componentes;
+    /** 
+     * Com a norma organizada desta maneira podemos usar o valor 
+     * do vetor da maneira que melhor servir as nossas necessidades
+    **/
 };
  
-double Força_componentes(Corpo i, Corpo j){
-double Normalizado;
-Normalizado= Norma(Corpo i, Corpo j);
-double componentes [4];
+double *forca_componentes(struct Corpo i, struct Corpo j){
+    double *normalizado;
+    normalizado = Norma(i, j);
+    double componentes [4];
 
-componentes[0]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[0])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[0]);
-componentes[1]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[1])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[1]);
-componentes[2]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[2])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[2]);
-componentes[3]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[3])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[3]);
+    componentes[0]=((G*i.m*j.m)/(normalizado[0])^2)*((j.p.x - i.p.x)/normalizado[0]);
+    componentes[1]=((G*i.m*j.m)/(normalizado[1])^2)*((j.p.x - i.p.x)/normalizado[1]);
+    componentes[2]=((G*i.m*j.m)/(normalizado[2])^2)*((j.p.x - i.p.x)/normalizado[2]);
+    componentes[3]=((G*i.m*j.m)/(normalizado[3])^2)*((j.p.x - i.p.x)/normalizado[3]);
 
-return componentes[4];
-};
+    return componentes;
+}
 
-double sum{
-int componentes[4];
+double *sum(){
+    int componentes[4];
 
-/**
-* bla bla bla
-**/
+    // TODO: Fazer isto
 
-return componentes[4];
-};
+    return componentes;
+}
 
-double Aceleracao_Componentes(Corpo i){
-double SOMATORIO[4];
-SOMATORIO= sum(Corpo i);
-double componentes[4];
+double *aceleracao_componentes(struct Corpo i){
+    double *SOMATORIO;
+    SOMATORIO= sum(i);
+    double componentes[4];
 
-componentes[0]=SOMATORIO[0]/Corpo.i.m;
-componentes[1]=SOMATORIO[1]/Corpo.i.m;
-componentes[2]=SOMATORIO[2]/Corpo.i.m;
-componentes[3]=SOMATORIO[3]/Corpo.i.m;
+    componentes[0]=SOMATORIO[0]/i.m;
+    componentes[1]=SOMATORIO[1]/i.m;
+    componentes[2]=SOMATORIO[2]/i.m;
+    componentes[3]=SOMATORIO[3]/i.m;
 
-return componentes[4];
+    return componentes;
 };
 
 

@@ -3,7 +3,7 @@ CFLAGS=-I.
 
 TEST_DATA = "10 2\n0 0 0 10\n5 0 0 20\n0 5 5 10\n10 5 0 20"
 BUILD_DIR= build
-FILE_FUNCS= helpers/file_functions.c 
+HELPER_FUNCS= helpers/file_functions.c helpers/algebra_functions.c
 
 
 .PHONY: all
@@ -12,7 +12,7 @@ all: main
 .PHONY: main
 main: main.c
 	test -d "$(BUILD_DIR)" || mkdir $(BUILD_DIR)
-	$(CC) $(FILE_FUNCS) main.c -o $(BUILD_DIR)/main
+	$(CC) $(HELPER_FUNCS) main.c -o $(BUILD_DIR)/main
 
 setup:
 	make -C ./exemplos/

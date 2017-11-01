@@ -19,7 +19,7 @@ CORPO * generate_mock_bodies(int body_count){
         bodies[i].f = get_vector_cartesian(0, 0, 0);
         bodies[i].v = get_vector_cartesian(0, 0, 0);    
 
-        print_body(bodies[i]);
+        // print_body(bodies[i]);
     }
 
     return bodies;

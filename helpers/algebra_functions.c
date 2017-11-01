@@ -40,3 +40,17 @@ VECTOR get_vector_cartesian(double x, double y, double z){
 
     return v;
 }
+
+VECTOR get_vector_polar(double versor, double theta, double phi){
+    VECTOR v;
+
+    v.versor = versor;
+    v.theta = theta;
+    v.phi = phi;
+
+    v.x = versor * sin(theta) * cos(phi);
+    v.y = versor * sin(theta) * sin(phi);
+    v.z = versor * cos(phi);
+
+    return v;
+}

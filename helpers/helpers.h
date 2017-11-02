@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define G 667408E-16
 
@@ -64,7 +65,7 @@ double *get_angles(double x, double y, double z);
  *  ficheiro para obter a informacao dos corpos, 
  *  apartir de um ficheiro
 **/
-struct Corpo *read_from_file(int *total_time, int *time_delta);
+CORPO *read_from_file(int *total_time, int *time_delta);
 
 
 /**
@@ -72,75 +73,12 @@ struct Corpo *read_from_file(int *total_time, int *time_delta);
  *  ficheiro para escrever a informacao dos corpos em ficheiro, 
  *  com uma estrutura pre definida
 **/
-<<<<<<< HEAD
-<<<<<<< HEAD
-int write_to_file();
-
-
-/** 
- * Parte redigida por D. Rui Barbosa, primeiro de seu nome
-**/
-
-#define Grv = (6.67408*10^(-11));
-/**
- * #define K= qql merda
-**/
-double TEMPO;
-
-
-double Norma(Corpo i, Corpo j){
-double componentes [4];
-componentes[0]=((Corpo.j.p.x - Corpo.i.p.x)²;
-componentes[1]=((Corpo.j.p.y - Corpo.i.p.y)²;
-componentes[2]=((Corpo.j.p.z - Corpo.i.p.z)²;
-componentes[3]=sqrt(componentes[0] + componentes[1] + componentes[2]);
-retun componentes[4];
-/** 
- * Com a norma organizada desta maneira podemos usar o valor 
- * do vetor da maneira que melhor servir as nossas necessidades
-**/
-};
- 
-double Força_componentes(Corpo i, Corpo j){
-double Normalizado;
-Normalizado= Norma(Corpo i, Corpo j);
-double componentes [4];
-
-componentes[0]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[0])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[0]);
-componentes[1]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[1])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[1]);
-componentes[2]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[2])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[2]);
-componentes[3]=((Grv*Corpo.i.m*Corpo.j.m)/(Normalizado[3])^2]*[(Corpo.j.p.x - Corpo.i.p.x)/Normalizado[3]);
-
-return componentes[4];
-};
-
-double sum{
-int componentes[4];
-
-/**
-* bla bla bla
-**/
-
-return componentes[4];
-};
-
-double Aceleracao_Componentes(Corpo i){
-double SOMATORIO[4];
-SOMATORIO= sum(Corpo i);
-double componentes[4];
-
-componentes[0]=SOMATORIO[0]/Corpo.i.m;
-componentes[1]=SOMATORIO[1]/Corpo.i.m;
-componentes[2]=SOMATORIO[2]/Corpo.i.m;
-componentes[3]=SOMATORIO[3]/Corpo.i.m;
-
-return componentes[4];
-};
-
-
-=======
-int write_to_file(CORPO *conjunto_corpos);
->>>>>>> master
-=======
 int write_to_file(CORPO *conjunto_corpos, int body_count);
->>>>>>> master
+
+
+/**
+ * create_body_from_line
+ *  tem como parametro de entrada uma linha do ficheiro
+ *  que corresponde a x,y,z e m de um corpo, e devolve um novo corpo.
+ **/
+CORPO create_body_from_line(char* str);

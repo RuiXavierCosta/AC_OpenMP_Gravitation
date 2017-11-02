@@ -1,6 +1,8 @@
-/**
- * #define K= qql merda
-**/
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "helpers.h"
+
 double TEMPO;
 
 
@@ -14,6 +16,7 @@ double *Norma(struct Corpo i, struct Corpo j){
     /** 
      * Com a norma organizada desta maneira podemos usar o valor 
      * do vetor da maneira que melhor servir as nossas necessidades
+     * Ccomponentes[0]=Xx; componentes[1]=Yy; componentes[2]=Zz; componentes[3]=Modulo das componentes;
     **/
 };
  
@@ -52,3 +55,24 @@ double *aceleracao_componentes(struct Corpo i){
 };
 
 
+double *velocidade_componentes(struct Corpo i){
+    double componentes[4];
+
+    componentes[0]=(i.v[0])+(i.a[0])*TEMPO;
+    componentes[1]=(i.v[1])+(i.a[1])*TEMPO;
+    componentes[2]=(i.v[2])+(i.a[2])*TEMPO;
+    componentes[3]=(i.v[3])+(i.a[3])*TEMPO;
+
+    return componentes;
+};
+
+double *posicao_componentes(struct Corpo i){
+    double componentes[4];
+
+    componentes[0]=(i.p[0])+(i.v[0])*TEMPO;
+    componentes[1]=(i.p[1])+(i.v[1])*TEMPO;
+    componentes[2]=(i.p[2])+(i.v[2])*TEMPO;
+    componentes[3]=(i.p[3])+(i.v[3])*TEMPO;
+
+    return componentes;
+};

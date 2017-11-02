@@ -1,9 +1,28 @@
 #include "helpers.h"
 
-struct Corpo *read_from_file(int *total_time, int *time_delta){
+CORPO create_body_from_line(char* str){
+    char *token = (char*)malloc(sizeof(char)*56);
+    CORPO body;
+    double values[4];
+
+    int i = 0;
+    while((token = strsep(&str, " ")) != NULL){
+        if(token != "\n" && atoi(token) != EOF){
+            values[i] = atof(token);
+            i++;
+        }
+    }
+
+    body.p = get_vector_cartesian(values[0],values[1],values[2]);
+    body.m = values[3];
+
+    return body;
+}
+
+CORPO *read_from_file(int *total_time, int *time_delta){
     int body_count = 0;
     int ch=0;
-    char buff;
+    char *buff = (char*)malloc(sizeof(char)*256);
     FILE *fp;
     fp = fopen("bodies.txt", "r");
 
@@ -24,23 +43,18 @@ struct Corpo *read_from_file(int *total_time, int *time_delta){
 
     CORPO *bodies = (CORPO *)malloc(sizeof(CORPO)*body_count);
     int i = -1;
-    int t_total = -1, delta = -1;
 
-    while((buff=fgetc(fp))!=EOF){
-        if(buff == '\n'){
+    while((fgets (buff, 32, fp)!=NULL)){
+        if( i == -1){
+            *total_time = atoi((strsep(&buff, " ")));
+            *time_delta = atoi(buff);
             i++;
-        } else{
-            if( i == -1 && buff != ' '){
-                if(t_total == -1){
-                    t_total = (int)buff;
-                } else if(delta == -1){
-                    delta = (int)buff;
-                }
-            }
+        }else{
+            bodies[i] = create_body_from_line(buff);
+            i++;
         }
-    }
 
-    printf("total = %d. delta = %d", t_total, delta);
+    }
 
     fclose(fp);
     return 0;

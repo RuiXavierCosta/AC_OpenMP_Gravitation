@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include <math.h>
 
 
 double get_versor(double x, double y, double z){

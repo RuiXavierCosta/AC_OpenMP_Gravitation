@@ -32,6 +32,7 @@ typedef struct Corpo{
     VECTOR f;
     VECTOR v;
     VECTOR a;
+    VECTOR dif;
 } CORPO;
 
 /**

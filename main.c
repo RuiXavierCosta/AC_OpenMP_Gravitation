@@ -32,6 +32,8 @@ int main(int argc, char ** argv){
 
     read_from_file(&total_time, &delta_time);
     printf("total = %d. delta = %d", total_time, delta_time);
+
+
     return 0;
 }
 

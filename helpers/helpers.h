@@ -83,3 +83,37 @@ int write_to_file(CORPO *conjunto_corpos, int body_count);
  *  que corresponde a x,y,z e m de um corpo, e devolve um novo corpo.
  **/
 CORPO create_body_from_line(char* str);
+
+/**
+ * subtracao
+  **/
+
+VECTOR sub_versor(CORPO i, CORPO j);
+
+/**
+ * forca
+ *  tem como parametro de entrada duas estruturas do tipo Corpo
+ *   e devolve um novo vector.
+ **/
+
+VECTOR forca( CORPO i, CORPO j);
+
+/**
+ * somatorio das forças
+  **/
+  VECTOR sum(CORPO i);
+
+  /**
+ * aceleração
+  **/
+
+  VECTOR aceleracao(CORPO i);
+/**
+ * velocidade
+  **/
+  VECTOR velocidade(CORPO i, int TEMPO);
+
+  /**
+ * posicao
+  **/
+  VECTOR posicao(CORPO i, int TEMPO);

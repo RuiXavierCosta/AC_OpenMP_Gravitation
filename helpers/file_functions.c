@@ -71,13 +71,14 @@ CORPO *read_from_file(int *total_time, int *time_delta, int body_count){
             i++;
         }else{
             bodies[i] = create_body_from_line(buff);
-            //print_body(&bodies[i]);
+            print_body(&bodies[i]);
+            //printf("i = %i\n",i);
             i++;
         }
     }
 
     fclose(fp);
-    return 0;
+    return bodies;
 }
 
 int write_to_file(CORPO *conjunto_corpos, int body_count){

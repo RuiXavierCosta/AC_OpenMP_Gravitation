@@ -102,8 +102,19 @@ CORPO create_body_from_line(char* str);
 /**
  * subtracao
   **/
+VECTOR sub_vector(VECTOR a, VECTOR b);
 
-VECTOR sub_versor(CORPO i, CORPO j);
+/**
+ * mult_vector
+ *  multiplica 2 vectores, devolve um novo vector
+**/
+VECTOR mult_vector(VECTOR a, VECTOR b);
+
+/**
+ * mult_vector_with_scalar
+ *  multiplica um vector por um valor escalar
+**/
+VECTOR mult_vector_with_scalar(VECTOR v, double d);
 
 /**
  * forca
@@ -114,9 +125,9 @@ VECTOR sub_versor(CORPO i, CORPO j);
 VECTOR forca( CORPO i, CORPO j);
 
 /**
- * somatorio das forças
+ * soma de vectores
   **/
-  VECTOR sum(CORPO i);
+  VECTOR sum_vector(VECTOR a, VECTOR b);
 
   /**
  * aceleração
@@ -126,9 +137,9 @@ VECTOR forca( CORPO i, CORPO j);
 /**
  * velocidade
   **/
-  VECTOR velocidade(CORPO i, int TEMPO);
+  VECTOR velocidade(VECTOR v_anterior, VECTOR a, int tempo_delta);
 
   /**
  * posicao
   **/
-  VECTOR posicao(CORPO i, int TEMPO);
+  VECTOR posicao(VECTOR p_anterior, VECTOR v, int TEMPO);

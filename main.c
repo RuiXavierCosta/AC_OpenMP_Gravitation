@@ -26,24 +26,37 @@ int main(int argc, char ** argv){
     // CORPO *P = generate_mock_bodies(TOTAL_CORPOS);
     body_count = get_body_count();
     CORPO *P = read_from_file(&total_time, &delta_time, body_count);
+    VECTOR F = get_vector_cartesian(0,0,0);
+    VECTOR p_anterior, v_anterior;
+
     printf("total = %d. delta = %d\n", total_time, delta_time);
-    printf("body count=%i\n", body_count);
+    printf("body count=%i\n\n\n", body_count);
 
     for (int i=0; i<body_count; i++){
         //print_body(&P[i]);
         for(int j=0; j<body_count; j++ ){
-            if( j != i ){                
-                P[i].dif= sub_versor(P[i], P[j]);
-                P[i].f=forca(P[i], P[j]);
-                P[i].a=aceleracao(P[i]);
-                P[i].v=velocidade(P[i], delta_time);
-                P[i].p=posicao(P[i], delta_time);
-            }                
-            if( i == 0){
-                printf("%0.3f\n", P[j].dif.x);
-                //print_body(&P[j]);
+            if( j != i ){
+                F = sum_vector(F, forca(P[i], P[j]));
+                // printf("fx = %0.14f; fy = %0.14f; fz = %0.14f;\n", 
+                //     F.x,
+                //     F.y,
+                //     F.z
+                // );
             }
         }
+
+        P[i].f = F;
+        P[i].a=aceleracao(P[i]);
+        v_anterior = P[i].v;
+        P[i].v=velocidade(v_anterior, P[i].a, delta_time);
+        p_anterior = P[i].p;
+        P[i].p=posicao(p_anterior, P[i].v, delta_time);
+    
+        printf("px = %0.10f; py = %0.10f; pz = %0.10f;\n", 
+            P[i].p.x,
+            P[i].p.y,
+            P[i].p.z
+        );
     }
 
     return 0;

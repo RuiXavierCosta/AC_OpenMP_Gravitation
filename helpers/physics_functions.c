@@ -1,45 +1,30 @@
 #include "helpers.h"
 
 VECTOR forca(CORPO i, CORPO j){
-    VECTOR resultado;
+    double eq1;
+    VECTOR eq2;
+    VECTOR dif_vector;
+    double aux =0.0, dif_versor =0.0;
 
-    VECTOR diferenca;
-    
-    diferenca = sub_versor(i, j);
-/**
-    resultado =((G*i.m*j.m)/(pow(diferenca.versor, 2.00))*(()/(diferenca.versor)) ;
-**/
-return resultado;
+    dif_vector = sub_vector(i.p, j.p);
+    dif_versor = get_versor(dif_vector.x, dif_vector.y, dif_vector.z);
+
+    eq1 = (G*i.m*j.m)/pow(dif_versor, 2.0);
+    // relembro que aux e um escalar
+    aux = pow(dif_versor, -1.0);
+
+    eq2 = mult_vector_with_scalar(dif_vector, aux);
+    return mult_vector_with_scalar(eq2, eq1);
 }
 
 VECTOR aceleracao(CORPO i){
-    VECTOR soma;
-    VECTOR aceleracao;
-    soma= sum(i);
-    
-    i.a.x= soma.x / i.m;
-    i.a.y= soma.y / i.m;
-    i.a.z= soma.z / i.m;
-
-    return aceleracao;
+    return mult_vector_with_scalar(i.f, i.m);
 };
 
-VECTOR velocidade(CORPO i, int TEMPO){
-    VECTOR velocidade;
-
-    velocidade.x=(i.v.x)+(i.a.x)*TEMPO;
-    velocidade.y=(i.v.y)+(i.a.y)*TEMPO;
-    velocidade.z=(i.v.z)+(i.a.z)*TEMPO;
-
-    return velocidade;
+VECTOR velocidade(VECTOR v_anterior, VECTOR a, int tempo_delta){
+    return sum_vector(v_anterior, mult_vector_with_scalar(a, tempo_delta));
 };
 
-VECTOR posicao(CORPO i, int TEMPO){
-    VECTOR posicao;
-
-    posicao.x=(i.p.x)+(i.v.x)*TEMPO;
-    posicao.y=(i.p.y)+(i.v.y)*TEMPO;
-    posicao.z=(i.p.z)+(i.v.z)*TEMPO;
-
-    return posicao;
+VECTOR posicao(VECTOR p_anterior, VECTOR v, int tempo_delta){
+    return sum_vector(p_anterior, mult_vector_with_scalar(v, tempo_delta));
 };

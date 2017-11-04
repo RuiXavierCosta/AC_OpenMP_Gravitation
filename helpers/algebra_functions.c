@@ -4,26 +4,20 @@ double get_versor(double x, double y, double z){
     return sqrt( pow(x, 2.0) + pow(y, 2.0) + pow(z, 2.0) );
 }
 
-VECTOR sum(CORPO i){
-    VECTOR soma;
-
-    soma.x+= i.f.x;
-    soma.y+= i.f.y;
-    soma.z+= i.f.z;
-
-    return soma;
+VECTOR sum_vector(VECTOR a, VECTOR b){
+    return get_vector_cartesian(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 
-VECTOR sub_versor(CORPO i, CORPO j){
-    VECTOR diferenca;
-    float x,y,z;
+VECTOR mult_vector(VECTOR a, VECTOR b){
+    return get_vector_cartesian(a.x * b.x, a.y * b.y, a.z * b.z);
+}
 
-    x= j.p.x - i.p.x;
-    y= j.p.y - i.p.y;
-    z= j.p.z - i.p.z;
-    diferenca = get_vector_cartesian(x, y, z);
+VECTOR mult_vector_with_scalar(VECTOR v, double d){
+    return get_vector_cartesian(v.x * d, v.y * d, v.z * d);
+}
 
-    return diferenca;
+VECTOR sub_vector(VECTOR a, VECTOR b){
+    return get_vector_cartesian(a.x - b.x, a.y - b.y, a.z - b.z);
 }
 
 double *get_angles(double x, double y, double z){

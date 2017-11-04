@@ -1,5 +1,8 @@
 #include "helpers.h"
 
+char INPUT_FILE[256] = "test_particles.dat";
+char OUTPUT_FILE[256] = "build/particles.dat";
+
 void print_body(CORPO *body){
     printf("BODY -> p = %.3f,%.3f,%.3f || %.3f,%.3f,%.3f     m = %0.1f\n",
         body->p.x, body->p.y, body->p.z,
@@ -11,7 +14,7 @@ int get_body_count(){
     int body_count = 0;
     int ch=0;
     FILE *fp;
-    fp = fopen("bodies.txt", "r");
+    fp = fopen(INPUT_FILE, "r");
 
     if (fp == NULL){
         return 0;
@@ -52,7 +55,7 @@ CORPO create_body_from_line(char* str){
 CORPO *read_from_file(int *total_time, int *time_delta, int body_count){
     char *buff = (char*)malloc(sizeof(char)*256);
     FILE *fp;
-    fp = fopen("bodies.txt", "r");
+    fp = fopen(INPUT_FILE, "r");
 
     if (fp == NULL){
         return 0;
@@ -84,7 +87,7 @@ CORPO *read_from_file(int *total_time, int *time_delta, int body_count){
 int write_to_file(CORPO *conjunto_corpos, int body_count){
     FILE *fp;
 
-    fp = fopen("build/bodie_positions.txt", "w");
+    fp = fopen(OUTPUT_FILE, "w");
     for(int i = 0; i < body_count; i++){
         fprintf(fp, "Teste %d", i);
     }

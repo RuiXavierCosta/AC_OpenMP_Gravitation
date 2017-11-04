@@ -3,7 +3,7 @@ CFLAGS=-I.
 
 TEST_DATA = "10 2\n0 0 0 10\n5 0 0 20\n0 5 5 10\n10 5 0 20"
 BUILD_DIR= build
-HELPER_FUNCS= helpers/file_functions.c helpers/algebra_functions.c
+HELPER_FUNCS= helpers/file_functions.c helpers/algebra_functions.c helpers/physics_functions.c
 
 
 .PHONY: all

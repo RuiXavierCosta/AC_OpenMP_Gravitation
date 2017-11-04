@@ -1,5 +1,34 @@
 #include "helpers.h"
 
+void print_body(CORPO *body){
+    printf("BODY -> p = %.3f,%.3f,%.3f || %.3f,%.3f,%.3f     m = %0.1f\n",
+        body->p.x, body->p.y, body->p.z,
+        body->p.versor, body->p.theta, body->p.phi,
+        body->m);
+}
+
+int get_body_count(){
+    int body_count = 0;
+    int ch=0;
+    FILE *fp;
+    fp = fopen("bodies.txt", "r");
+
+    if (fp == NULL){
+        return 0;
+    }
+
+    // vai contar o numero de linhas para saber
+    // quantos corpos sao, para alocar memoria
+    while ((ch = fgetc(fp)) != EOF){
+        if (ch == '\n'){
+            body_count++;
+        }
+    }
+
+    fclose(fp);
+    return body_count;
+}
+
 CORPO create_body_from_line(char* str){
     char *token = (char*)malloc(sizeof(char)*56);
     CORPO body;
@@ -16,26 +45,17 @@ CORPO create_body_from_line(char* str){
     body.p = get_vector_cartesian(values[0],values[1],values[2]);
     body.m = values[3];
 
+    //print_body(&body);
     return body;
 }
 
-CORPO *read_from_file(int *total_time, int *time_delta){
-    int body_count = 0;
-    int ch=0;
+CORPO *read_from_file(int *total_time, int *time_delta, int body_count){
     char *buff = (char*)malloc(sizeof(char)*256);
     FILE *fp;
     fp = fopen("bodies.txt", "r");
 
     if (fp == NULL){
         return 0;
-    }
-
-    // vai contar o numero de linhas para saber
-    // quantos corpos sao, para alocar memoria
-    while ((ch = fgetc(fp)) != EOF){
-        if (ch == '\n'){
-            body_count++;
-        }
     }
 
     // reset do ponteiro para o inicio do ficheiro
@@ -51,9 +71,9 @@ CORPO *read_from_file(int *total_time, int *time_delta){
             i++;
         }else{
             bodies[i] = create_body_from_line(buff);
+            //print_body(&bodies[i]);
             i++;
         }
-
     }
 
     fclose(fp);

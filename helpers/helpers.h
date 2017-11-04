@@ -63,11 +63,18 @@ double get_versor(double x, double y, double z);
 double *get_angles(double x, double y, double z);
 
 /**
+ * print_body
+ *  funcao auxiliar para imprimir para o ecra os
+ *  valores dos corpos
+**/
+void print_body(CORPO *body);
+
+/**
  * read_from_file:
  *  ficheiro para obter a informacao dos corpos, 
  *  apartir de um ficheiro
 **/
-CORPO *read_from_file(int *total_time, int *time_delta);
+CORPO *read_from_file(int *total_time, int *time_delta, int body_count);
 
 
 /**
@@ -77,6 +84,13 @@ CORPO *read_from_file(int *total_time, int *time_delta);
 **/
 int write_to_file(CORPO *conjunto_corpos, int body_count);
 
+/**
+ * get_body_count
+ *  vai ler o ficheiro sem recuperar nenhuma informacao,
+ *  so para contar o numero de linhas, para saber
+ *  quantos corpos vao ser introduzidos
+ **/
+int get_body_count();
 
 /**
  * create_body_from_line

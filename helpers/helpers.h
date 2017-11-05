@@ -4,6 +4,8 @@
 #include <string.h>
 
 #define G 667408E-16
+#define INPUT_FILE "particles.dat"
+#define OUTPUT_FILE "build/particles.dat"
 
 /** 
  * Vector:
@@ -79,10 +81,10 @@ CORPO *read_from_file(int *total_time, int *time_delta, int body_count);
 
 /**
  * write_to_file:
- *  ficheiro para escrever a informacao dos corpos em ficheiro, 
+ *  ficheiro para escrever a posicao de um corpos em ficheiro, 
  *  com uma estrutura pre definida
 **/
-int write_to_file(CORPO *conjunto_corpos, int body_count);
+void write_position_to_file(VECTOR p, FILE *fp);
 
 /**
  * get_body_count

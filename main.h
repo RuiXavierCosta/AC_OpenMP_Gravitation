@@ -2,6 +2,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <time.h>
 
 #ifdef _OPENMP
 	#include <omp.h>

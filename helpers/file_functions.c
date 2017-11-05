@@ -1,8 +1,5 @@
 #include "helpers.h"
 
-char INPUT_FILE[256] = "test_particles.dat";
-char OUTPUT_FILE[256] = "build/particles.dat";
-
 void print_body(CORPO *body){
     printf("BODY -> p = %.3f,%.3f,%.3f || %.3f,%.3f,%.3f     m = %0.1f\n",
         body->p.x, body->p.y, body->p.z,
@@ -84,13 +81,6 @@ CORPO *read_from_file(int *total_time, int *time_delta, int body_count){
     return bodies;
 }
 
-int write_to_file(CORPO *conjunto_corpos, int body_count){
-    FILE *fp;
-
-    fp = fopen(OUTPUT_FILE, "w");
-    for(int i = 0; i < body_count; i++){
-        fprintf(fp, "Teste %d", i);
-    }
-    
-    return 0;
+void write_position_to_file(VECTOR p, FILE *fp){
+    fprintf(fp, "%0.5f %0.5f %0.5f\n", p.x, p.y, p.z);
 }

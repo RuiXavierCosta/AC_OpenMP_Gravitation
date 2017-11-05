@@ -51,24 +51,37 @@ int main(int argc, char ** argv){
             #pragma omp for
             for (int i=0; i<body_count; i++){
                 //print_body(&P[i]);
+                //#pragma omp for
                 for(int j=0; j<body_count; j++ ){
                     if( j != i ){
                         F = sum_vector(F, forca(P[i], P[j]));
                     }
                 }
 
-                P[i].f = F;
-                P[i].a=aceleracao(P[i]);
-                v_anterior = P[i].v;
-                P[i].v=velocidade(v_anterior, P[i].a, delta_time);
-                p_anterior = P[i].p;
-                P[i].p=posicao(p_anterior, P[i].v, delta_time);
-                write_position_to_file(P[i].p, fp);
-                // printf("px = %0.10f; py = %0.10f; pz = %0.10f;\n", 
-                //     P[i].p.x,
-                //     P[i].p.y,
-                //     P[i].p.z
-                // );
+                //#pragma sections
+                {
+                    //#pragma section
+                    {
+                        P[i].f = F;
+                        P[i].a=aceleracao(P[i]);
+                    }
+                    //#pragma section
+                    {
+                        v_anterior = P[i].v;
+                        P[i].v=velocidade(v_anterior, P[i].a, delta_time);
+                    }
+                    //#pragma sections
+                    {
+                        p_anterior = P[i].p;
+                        P[i].p=posicao(p_anterior, P[i].v, delta_time);
+                        write_position_to_file(P[i].p, fp);
+                    }
+                    // printf("px = %0.10f; py = %0.10f; pz = %0.10f;\n", 
+                    //     P[i].p.x,
+                    //     P[i].p.y,
+                    //     P[i].p.z
+                    // );
+                }
 
                 //quando correr todas os corpos na iteracao atual
                 // imprime o \n para sinalizar a nova iteracao

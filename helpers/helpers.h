@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define G 667408E-16
-#define INPUT_FILE "particles.dat"
+#define INPUT_FILE "test_particles2.dat"
 #define OUTPUT_FILE "build/particles.dat"
 
 /** 

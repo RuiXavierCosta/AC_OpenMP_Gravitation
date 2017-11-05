@@ -39,12 +39,16 @@ int main(int argc, char ** argv){
     
     printf("total = %d. delta = %d\n", total_time, delta_time);
     printf("body count=%i\n\n\n", body_count);
-    printf("A comecar a simulacao.\n");
+
 	t1 = clock();
-    for(int k = 0; k < total_time; k += delta_time){
-        //#pragma omp for
-        {
-            //printf("\n\n Iteracao n - %i\n", k/delta_time);
+    #pragma omp parallel num_threads(4)
+    {
+        printf("A comecar a simulacao com %i processadores. Hello P%i.\n", omp_get_num_threads(), omp_get_thread_num());
+        for(int k = 0; k < total_time; k += delta_time){
+            if(omp_get_thread_num() == 0){
+                printf("Iteracao temporal %i/%i (k = %i).\n", k/delta_time, total_time/delta_time, k/delta_time);
+            }
+            #pragma omp for
             for (int i=0; i<body_count; i++){
                 //print_body(&P[i]);
                 for(int j=0; j<body_count; j++ ){

@@ -10,8 +10,8 @@ unset key
 #unset tics
 #unset border
 ficheiro="build/particles.dat"
-totaltime=1000000
-deltat=2000
+totaltime=315360000
+deltat=60000
 iter=totaltime/deltat
 
 do for [ii=0:iter] {

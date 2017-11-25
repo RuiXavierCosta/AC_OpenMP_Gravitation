@@ -14,11 +14,12 @@ VECTOR forca(CORPO i, CORPO j){
     aux = pow(dif_versor, -1.0);
 
     eq2 = mult_vector_with_scalar(dif_vector, aux);
+
     return mult_vector_with_scalar(eq2, eq1);
 }
 
-VECTOR aceleracao(CORPO i){
-    return mult_vector_with_scalar(i.f, i.m);
+VECTOR aceleracao(VECTOR f, double m){
+    return mult_vector_with_scalar(f, pow(m, -1.0));
 };
 
 VECTOR velocidade(VECTOR v_anterior, VECTOR a, int tempo_delta){

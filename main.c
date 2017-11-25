@@ -41,15 +41,17 @@ int main(int argc, char ** argv){
     printf("body count=%i\n\n\n", body_count);
 
 	t1 = clock();
-    #pragma omp parallel num_threads(4)
-    {
-        printf("A comecar a simulacao com %i processadores. Hello P%i.\n", omp_get_num_threads(), omp_get_thread_num());
-        for(int k = 0; k < total_time; k += delta_time){
-            if(omp_get_thread_num() == 0){
-                printf("Iteracao temporal %i/%i (k = %i).\n", k/delta_time, total_time/delta_time, k/delta_time);
-            }
+    printf("A comecar a simulacao com %i processadores. Hello P%i.\n", omp_get_num_threads(), omp_get_thread_num());
+    for(int k = 0; k < total_time; k += delta_time){
+        if(omp_get_thread_num() == 0){
+            printf("Iteracao temporal %i/%i (k = %i).\n", k/delta_time, total_time/delta_time, k/delta_time);
+        }
+        #pragma omp parallel num_threads(4)
+        {
             #pragma omp for
             for (int i=0; i<body_count; i++){
+                write_position_to_file(P[i].p, fp);
+                //printf("fx = %.13f fy = %.13f fz = %.13f\n", P[i].f.x, P[i].f.y, P[i].f.z);
                 //print_body(&P[i]);
                 //#pragma omp for
                 for(int j=0; j<body_count; j++ ){
@@ -61,21 +63,20 @@ int main(int argc, char ** argv){
                 //#pragma sections
                 {
                     //#pragma section
-                    {
+                    //{
                         P[i].f = F;
-                        P[i].a=aceleracao(P[i]);
-                    }
+                        P[i].a=aceleracao(P[i].f, P[i].m);
+                    //}
                     //#pragma section
-                    {
+                    //{
                         v_anterior = P[i].v;
                         P[i].v=velocidade(v_anterior, P[i].a, delta_time);
-                    }
+                    //}
                     //#pragma sections
-                    {
+                    //{
                         p_anterior = P[i].p;
                         P[i].p=posicao(p_anterior, P[i].v, delta_time);
-                        write_position_to_file(P[i].p, fp);
-                    }
+                    //}
                     // printf("px = %0.10f; py = %0.10f; pz = %0.10f;\n", 
                     //     P[i].p.x,
                     //     P[i].p.y,

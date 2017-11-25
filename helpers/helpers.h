@@ -135,7 +135,7 @@ VECTOR forca( CORPO i, CORPO j);
  * aceleração
   **/
 
-  VECTOR aceleracao(CORPO i);
+  VECTOR aceleracao(VECTOR f, double m);
 /**
  * velocidade
   **/
@@ -144,4 +144,4 @@ VECTOR forca( CORPO i, CORPO j);
   /**
  * posicao
   **/
-  VECTOR posicao(VECTOR p_anterior, VECTOR v, int TEMPO);
+  VECTOR posicao(VECTOR p_anterior, VECTOR v, int tempo_delta);

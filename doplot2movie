@@ -2,16 +2,16 @@
 set term png
 set xyplane 0
 set view equal xyz
-set xrange [-9000:9000]
-set yrange [-9000:9000]
-set zrange [-9000:9000]
+set xrange [-20000:20000]
+set yrange [-20000:20000]
+set zrange [-20000:20000]
 
 unset key
 #unset tics
 #unset border
 ficheiro="build/particles.dat"
-totaltime=315360000
-deltat=60000
+totaltime=315360
+deltat=60
 iter=totaltime/deltat
 
 do for [ii=0:iter] {

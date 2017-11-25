@@ -9,11 +9,11 @@ VECTOR sum_vector(VECTOR a, VECTOR b){
 }
 
 VECTOR mult_vector(VECTOR a, VECTOR b){
-    return get_vector_cartesian(a.x * b.x, a.y * b.y, a.z * b.z);
+    return get_vector_polar(a.versor * b.versor, a.theta + b.theta, a.phi + b.phi);
 }
 
 VECTOR mult_vector_with_scalar(VECTOR v, double d){
-    return get_vector_cartesian(v.x * d, v.y * d, v.z * d);
+    return get_vector_polar(v.versor * d,v.theta, v.phi);
 }
 
 VECTOR sub_vector(VECTOR a, VECTOR b){
